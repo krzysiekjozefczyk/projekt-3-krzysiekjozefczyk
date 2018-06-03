@@ -14,12 +14,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginTest {
 
 	private static WebDriver driver;
 	WebElement element;
-
+	private final Wait<WebDriver> wait =new WebDriverWait(driver,4);
+	
 	@BeforeAll
 	public static void driverSetUp() throws Exception {
 		System.setProperty("webdriver.gecko.driver", "resources/geckodriver");
@@ -56,7 +58,7 @@ public class LoginTest {
 		
 		String element1 = driver.findElement(By.xpath("/html/body/div[4]/div[1]/div[1]/form/div[1]/div[2]/div")).getText();
 		
-		assertNotNull(element1,"Invalid Email or Password");
+		assertEquals(element1,"Invalid Email or Password");
 		
 	}
 

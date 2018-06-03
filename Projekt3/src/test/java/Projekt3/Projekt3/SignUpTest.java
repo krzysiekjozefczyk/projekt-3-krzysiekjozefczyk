@@ -47,6 +47,18 @@ class SignUpTest {
 		element.click();
 		driver.findElement(By.xpath("/html/body/nav/div/div[2]/ul[2]/ul/li[1]/ul/li[2]/a")).click();
 	}
+	
+	@Test
+	public void SignUpIncorrect() {
+		driver.get("https://www.phptravels.net/register");
+		SignUpForm signup = new SignUpForm(driver);
+		signup.SignUp("Marcin","Mycha","siemaeloos@wp.pl", "Qwerty","Qwertyy");
+		
+		String element1 = driver.findElement(By.xpath("/html/body/div[4]/section/div/div/div/div/div[2]/div/form/div[2]/div/p")).getText();
+		
+		assertEquals(element1,"Password not matching with confirm password.");	
+
+	}
 	@AfterAll
 	public static void tearDown() throws Exception {
 		driver.quit();

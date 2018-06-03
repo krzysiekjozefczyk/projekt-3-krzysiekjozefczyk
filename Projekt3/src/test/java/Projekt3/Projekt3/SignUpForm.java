@@ -39,7 +39,7 @@ class SignUpForm {
 	}
 
 	public void SignUp(String firstname, String lastname, String email, String password, String confirmpassword) {
-		wait.until(ExpectedConditions.titleContains("Register"));
+		//wait.until(ExpectedConditions.titleContains("Register"));
 		Firstname.sendKeys(firstname);
 		Lastname.sendKeys(lastname);
 		Email.sendKeys(email);

@@ -11,19 +11,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 class SignUpTest {
 	
 	private static WebDriver driver;
 	WebElement element;
+	private final Wait<WebDriver> wait =new WebDriverWait(driver,4);
 
 	@BeforeAll
 	public static void driverSetUp() throws Exception {
 		System.setProperty("webdriver.chrome.driver", "resources/chromedriver");
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
 	}
 
 	@Test
@@ -39,6 +42,7 @@ class SignUpTest {
 		driver.get("https://www.phptravels.net/register");
 		SignUpForm signup = new SignUpForm(driver);
 		signup.SignUp("Marcin","Mycha","siemaeloo@wp.pl", "Qwerty","Qwerty");
+		wait.until(ExpectedConditions.titleIs("My Account"));
 		
 		element = driver.findElement(By.xpath("/html/body/nav/div/div[2]/ul[2]/ul/li[1]/a"));
 		

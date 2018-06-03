@@ -42,6 +42,8 @@ public class LoginTest {
 		LoginForm login = new LoginForm(driver);
 		login.login("karamba@wp.pl", "Qwerty");
 		
+		 wait.until(ExpectedConditions.titleIs("My Account"));
+		
 		element = driver.findElement(By.xpath("/html/body/nav/div/div[2]/ul[2]/ul/li[1]/a"));
 		
 		assertNotNull(element);	
